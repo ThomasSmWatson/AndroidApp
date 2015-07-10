@@ -11,8 +11,8 @@
          android:fitsSystemWindows. -->
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/imgBasicHouse"
         android:layout_gravity="center"
         android:background="@drawable/basic_house"
