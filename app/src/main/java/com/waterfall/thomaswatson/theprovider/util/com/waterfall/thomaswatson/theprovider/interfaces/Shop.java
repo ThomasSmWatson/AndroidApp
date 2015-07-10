@@ -8,6 +8,8 @@ public interface Shop {
     public void reviewItem(ShopComponant item);
     public Item giveSoldItem();
     public Item takeBoughtItem();
+    public void placeItemIntoShop(Item item);
+    public void takeShopComponantOutOfShop(ShopComponant componant);
     public ShopComponant convertItemToShopComponant(Item item);
     public Item convertShopComponantIntoItem(ShopComponant componant);
 }
