@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#ff0f8c0f"
+    android:layout_height="match_parent" android:background="#ff0e5211"
     tools:context="com.waterfall.thomaswatson.theprovider.Game">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -11,10 +11,16 @@
          android:fitsSystemWindows. -->
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/imgBasicHouse"
-        android:layout_gravity="center"
-        android:background="@drawable/basic_house"
-        android:adjustViewBounds="false" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_gravity="center_horizontal|top"
+        android:background="@drawable/barebones_hut" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="@drawable/barebones_forrest" />
 </FrameLayout>
