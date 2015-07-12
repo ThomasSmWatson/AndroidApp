@@ -1,4 +1,4 @@
-package com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.gameobjects;
+package com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.entities;
 
 import com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.interfaces.Item;
 import com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.interfaces.Shop;
