@@ -1,6 +1,6 @@
-package com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.interfaces;
+package com.waterfall.thomaswatson.theprovider.interfaces;
 
-import com.waterfall.thomaswatson.theprovider.util.Position;
+import com.waterfall.thomaswatson.theprovider.Position;
 //CHECK HWY DIMENSION ISNT IMPORTING!
 /**
  * Created by thomaswatson on 09/07/2015.

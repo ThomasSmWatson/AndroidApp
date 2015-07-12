@@ -1,4 +1,4 @@
-package com.waterfall.thomaswatson.theprovider.util;
+package com.waterfall.thomaswatson.theprovider;
 
 /**
  * Created by thomaswatson on 12/07/2015.

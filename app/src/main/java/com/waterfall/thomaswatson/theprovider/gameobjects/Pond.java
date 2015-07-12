@@ -1,7 +1,7 @@
-package com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.gameobjects;
+package com.waterfall.thomaswatson.theprovider.gameobjects;
 
-import com.waterfall.thomaswatson.theprovider.util.Position;
-import com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.interfaces.GameObject;
+import com.waterfall.thomaswatson.theprovider.Position;
+import com.waterfall.thomaswatson.theprovider.interfaces.GameObject;
 
 /**
  * Created by thomaswatson on 12/07/2015.

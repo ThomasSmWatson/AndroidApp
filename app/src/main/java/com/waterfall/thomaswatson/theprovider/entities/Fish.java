@@ -1,8 +1,8 @@
-package com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.entities;
+package com.waterfall.thomaswatson.theprovider.entities;
 
-import com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.interfaces.Eddible;
-import com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.interfaces.Item;
-import com.waterfall.thomaswatson.theprovider.util.com.waterfall.thomaswatson.theprovider.interfaces.ShopComponant;
+import com.waterfall.thomaswatson.theprovider.interfaces.Eddible;
+import com.waterfall.thomaswatson.theprovider.interfaces.Item;
+import com.waterfall.thomaswatson.theprovider.interfaces.ShopComponant;
 
 /**
  * Created by thomaswatson on 12/07/2015.
