@@ -5,8 +5,8 @@ import com.waterfall.thomaswatson.theprovider.Position;
 /**
  * Created by thomaswatson on 09/07/2015.
  */
-public interface GameObject <T extends  Number>{
+public interface GameObject {
     public void draw();
     public int getBlockTax();
-    public void setPlacement(Position<T> placement[]);
+    public<T extends  Number> void setPlacement(Position<T> placement[]);
 }

@@ -2,11 +2,11 @@ package com.waterfall.thomaswatson.theprovider.gameobjects;
 
 import com.waterfall.thomaswatson.theprovider.Position;
 import com.waterfall.thomaswatson.theprovider.interfaces.GameObject;
-
+import java.lang.*;
 /**
  * Created by thomaswatson on 12/07/2015.
  */
-public class Pond implements GameObject<Integer> {
+public class Pond implements GameObject{
 
     private int blockTex;
     private Position<Integer> conservationArea[];
@@ -36,7 +36,7 @@ public class Pond implements GameObject<Integer> {
 
 
     @Override
-    public void setPlacement(Position<Integer>[] placement) {
+    public <T extends Integer> void setPlacement(Position<T>[] placement) {
         if(placement.length > getBlockTax()){
             System.err.println("Size of placement is larger then the total block tax");
         }
@@ -45,7 +45,7 @@ public class Pond implements GameObject<Integer> {
             return;
         }
         for(int i = 0; i<getBlockTax(); i++){
-            conservationArea[i] = placement[i];
+            conservationArea[i] = (Position<Integer>) placement[i];
         }
     }
 }
