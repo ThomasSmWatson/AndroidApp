@@ -1,14 +1,10 @@
 package com.waterfall.thomaswatson.theprovider;
 
-import com.waterfall.thomaswatson.theprovider.util.SystemUiHider;
-
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
+import android.graphics.Canvas;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
+
+import com.waterfall.thomaswatson.theprovider.util.SystemUiHider;
 
 
 /**
@@ -19,7 +15,7 @@ import android.view.View;
  */
 public class Game extends Activity {
 
-
+    PlayerArea area;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,5 +27,10 @@ public class Game extends Activity {
 
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        area = PlayerArea.getInstance();
+        area.drawPlayerArea(this.getApplicationContext(),new Canvas());
+    }
 }

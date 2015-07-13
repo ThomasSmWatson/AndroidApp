@@ -1,6 +1,9 @@
 package com.waterfall.thomaswatson.theprovider;
 
+import android.content.Context;
 import android.graphics.Canvas;
+
+import java.util.ArrayList;
 
 /**
  * Created by thomaswatson on 09/07/2015.
@@ -8,14 +11,29 @@ import android.graphics.Canvas;
 public class PlayerArea {
     private static int blockXAmount = 5;
     private static int blockYAmount = 5;
-    private Block blocks[][] = new Block[blockXAmount][blockYAmount];
+    private static PlayerArea instance;
+    private ArrayList<Block> blocks;
+    private BlockDrawer blockDrawer;
 
 
-     public void drawPlayeArea(float xPos,float yPos,Canvas canvas){
-         for(int x = 0; x<blockXAmount; x++){
-            for(int y = 0; y<blockYAmount; y++){
-                canvas.drawBitmap(blocks[x][y].getBlockImage(), (xPos + (x*Block.getSize())), yPos + (y*Block.getSize()), null);
-            }
-         }
+    public static PlayerArea getInstance(){
+        if(instance == null){
+            instance = new PlayerArea();
+
+        }
+            return instance;
+    }
+    private PlayerArea(){
+       blocks= new ArrayList<Block>();
+        for(int i = 0; i<(blockXAmount*blockYAmount); i++){
+            blocks.add(new Block());
+        }
+
+    }
+
+     public void drawPlayerArea(Context context,Canvas canvas){
+         blockDrawer = new BlockDrawer(context,blocks);
+         blockDrawer.draw(canvas);
+
      }
 }

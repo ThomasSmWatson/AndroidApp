@@ -1,9 +1,7 @@
 package com.waterfall.thomaswatson.theprovider;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.ImageView;
 
 /**
  * Created by thomaswatson on 09/07/2015.
@@ -16,7 +14,7 @@ public class Block {
 
 
     private Bitmap blockImage;
-    public Block(Context context){
+    public Block( ){
         blockImage = BitmapFactory.decodeFile("tiling_grass_block.png");
 
     }
