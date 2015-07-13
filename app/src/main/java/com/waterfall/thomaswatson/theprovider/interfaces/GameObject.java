@@ -8,5 +8,8 @@ import com.waterfall.thomaswatson.theprovider.Position;
 public interface GameObject {
     public void draw();
     public int getBlockTax();
-    public<T extends  Number> void setPlacement(Position<T> placement[]);
+    public void setPlacement(Position<Integer>[] placement);
+
+
+
 }

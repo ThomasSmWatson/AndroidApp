@@ -35,8 +35,10 @@ public class Pond implements GameObject{
     }
 
 
+
+
     @Override
-    public <T extends Integer> void setPlacement(Position<T>[] placement) {
+    public void setPlacement(Position<Integer>[] placement) {
         if(placement.length > getBlockTax()){
             System.err.println("Size of placement is larger then the total block tax");
         }
@@ -45,7 +47,7 @@ public class Pond implements GameObject{
             return;
         }
         for(int i = 0; i<getBlockTax(); i++){
-            conservationArea[i] = (Position<Integer>) placement[i];
+            conservationArea[i] =  placement[i];
         }
     }
 }
