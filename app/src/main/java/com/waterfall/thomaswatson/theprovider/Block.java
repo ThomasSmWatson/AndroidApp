@@ -9,15 +9,17 @@ import android.graphics.BitmapFactory;
  */
 public class Block {
 
-    private static float size = 100;
+    private static float size = 300;
     private float xPosition;
     private float yPosition;
-
+    //TODO: use position class isntead of floats
 
     private Bitmap blockImage;
     public Block(Context context){
-        size = 100;
-        blockImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.tiling_grass_block);
+        size = 300;
+        blockImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.tiling_grass_block);
+        Bitmap scaledImage =Bitmap.createScaledBitmap(blockImage, (int)Block.getSize(), (int)Block.getSize(), true);
+        blockImage = scaledImage;
 
     }
     public void setBlockImage(Bitmap blockImage){

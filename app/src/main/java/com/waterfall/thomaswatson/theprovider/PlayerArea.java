@@ -23,14 +23,14 @@ public class PlayerArea {
 
     }
     private void initBlocks(Context context){
-        for(int i = 0; i<(blockXAmount*blockYAmount); i++){
-            Block block = new Block(context);
-            int yPos = 0;
-            if(i%blockXAmount == 0) {
-                block.setYPosition(yPos++);
+        for(int x = 0; x<=blockXAmount; x++){
+            for(int y = 0; y<blockYAmount; y++){
+                Block block = new Block(context);
+                block.setXPosition(x);
+                block.setYPosition(y);
+                blocks.add(block);
+
             }
-            block.setXPosition(i%blockXAmount);
-            blocks.add(block);
         }
 
     }
