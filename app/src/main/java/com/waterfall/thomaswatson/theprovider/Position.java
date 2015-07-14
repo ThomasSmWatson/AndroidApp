@@ -17,7 +17,7 @@ public class Position <T extends  Number>{
     public void setY(T y){
         this.y = y;
     }
-    public T get(){
+    public T getY(){
         return y;
     }
 }

@@ -8,11 +8,11 @@ import java.lang.*;
  */
 public class Pond implements GameObject{
 
-    private int blockTex;
+    private int blockTax;
     private Position<Integer> conservationArea[];
 
     public Pond(){
-        blockTex = 9;
+        blockTax = 25;
         initPositionArray();
     }
 
@@ -31,7 +31,7 @@ public class Pond implements GameObject{
     @Override
     public int getBlockTax() {
 
-        return blockTex;
+        return blockTax;
     }
 
 

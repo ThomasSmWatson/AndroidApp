@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Created by thomaswatson on 09/07/2015.
  */
 public class PlayerArea {
-    private static int blockXAmount = 3;
-    private static int blockYAmount = 3;
+    private static int blockXAmount = 30;
+    private static int blockYAmount = 30;
     private ArrayList<Block> blocks;
     private BlockDrawer blockDrawer;
     private Canvas canvas;
@@ -26,8 +26,8 @@ public class PlayerArea {
         for(int x = 0; x<=blockXAmount; x++){
             for(int y = 0; y<blockYAmount; y++){
                 Block block = new Block(context);
-                block.setXPosition(x);
-                block.setYPosition(y);
+                block.setPosition(x,y);
+
                 blocks.add(block);
 
             }

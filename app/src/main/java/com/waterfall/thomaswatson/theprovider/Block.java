@@ -4,24 +4,31 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.waterfall.thomaswatson.theprovider.interfaces.BlockType;
+
 /**
  * Created by thomaswatson on 09/07/2015.
  */
-public class Block {
+public class Block implements BlockType {
 
-    private static float size = 300;
-    private float xPosition;
-    private float yPosition;
+    private static float size = 100;
+
+
+
+    private Position<Integer> position;
+    boolean isInUse;
     //TODO: use position class isntead of floats
 
     private Bitmap blockImage;
     public Block(Context context){
-        size = 300;
-        blockImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.tiling_grass_block);
+        isInUse = true;
+        position = new Position<Integer>();
+        blockImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.tiling_area_block);
         Bitmap scaledImage =Bitmap.createScaledBitmap(blockImage, (int)Block.getSize(), (int)Block.getSize(), true);
         blockImage = scaledImage;
 
     }
+    @Override
     public void setBlockImage(Bitmap blockImage){
      this.blockImage = blockImage;
     }
@@ -33,25 +40,34 @@ public class Block {
         return size;
     }
 
+    @Override
     public Bitmap getBlockImage() {
         return blockImage;
     }
 
-    public float getXPosition() {
-        return xPosition;
+    @Override
+    public boolean isInUse() {
+        return isInUse;
     }
 
-    public void setXPosition(float xPosition) {
-        this.xPosition = xPosition;
+    @Override
+    public void setIsInUse(boolean isInUse) {
+        this.isInUse = isInUse;
     }
 
-    public float getYPosition() {
-        return yPosition;
+    @Override
+    public Position<Integer> getPosition() {
+        return position;
     }
 
-    public void setYPosition(float yPosition) {
-        this.yPosition = yPosition;
+    @Override
+    public void setPosition(Position<Integer> position) {
+        this.position = position;
     }
-
+    @Override
+    public void setPosition(int x, int y){
+        position.setX(x);
+        position.setY(y);
+    }
 
 }
