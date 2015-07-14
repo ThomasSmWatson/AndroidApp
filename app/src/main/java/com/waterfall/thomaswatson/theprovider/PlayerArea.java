@@ -3,6 +3,8 @@ package com.waterfall.thomaswatson.theprovider;
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.waterfall.thomaswatson.theprovider.blocks.GrassBlock;
+
 import java.util.ArrayList;
 
 /**
@@ -11,22 +13,22 @@ import java.util.ArrayList;
 public class PlayerArea {
     private static int blockXAmount = 30;
     private static int blockYAmount = 30;
-    private ArrayList<Block> blocks;
+    private ArrayList<GrassBlock> blocks;
     private BlockDrawer blockDrawer;
     private Canvas canvas;
 
 
     public PlayerArea(Context context){
        //initBlocks();
-        blocks = new ArrayList<Block>();
+        blocks = new ArrayList<GrassBlock>();
        initBlocks(context);
 
     }
     private void initBlocks(Context context){
         for(int x = 0; x<=blockXAmount; x++){
             for(int y = 0; y<blockYAmount; y++){
-                Block block = new Block(context);
-                block.setPosition(x,y);
+                GrassBlock block = new GrassBlock(context);
+                block.setPosition(x, y);
 
                 blocks.add(block);
 
@@ -36,11 +38,11 @@ public class PlayerArea {
     }
 
 
-    public ArrayList<Block> getBlocks() {
+    public ArrayList<GrassBlock> getBlocks() {
         return blocks;
     }
 
-    public void setBlocks(ArrayList<Block> blocks) {
+    public void setBlocks(ArrayList<GrassBlock> blocks) {
         this.blocks = blocks;
     }
 

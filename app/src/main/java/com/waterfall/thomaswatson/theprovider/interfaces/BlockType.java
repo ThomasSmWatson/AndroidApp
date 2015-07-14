@@ -8,7 +8,7 @@ import com.waterfall.thomaswatson.theprovider.Position;
  * Created by thomaswatson on 14/07/2015.
  */
 public interface BlockType {
-    void setBlockImage(Bitmap blockImage);
+
 
     Bitmap getBlockImage();
 
