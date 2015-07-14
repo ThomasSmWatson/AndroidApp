@@ -1,12 +1,7 @@
 package com.waterfall.thomaswatson.theprovider;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.os.Bundle;
-import android.view.View;
 
 import com.waterfall.thomaswatson.theprovider.util.SystemUiHider;
 
@@ -20,13 +15,16 @@ import com.waterfall.thomaswatson.theprovider.util.SystemUiHider;
 public class Game extends Activity {
 
     PlayerArea area;
+    BlockDrawer drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_game);
-        myView view = new myView(this);
-        setContentView(view);
+        area = new PlayerArea(this);
+        drawer = new BlockDrawer(this, area.getBlocks());
+
+        setContentView(drawer);
+
 
 
     }
@@ -43,19 +41,4 @@ public class Game extends Activity {
 //        area.drawPlayerArea(this.getApplicationContext());
     }
 
-
-    public class myView extends View {
-
-        public myView(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-
-            Bitmap blockImage = BitmapFactory.decodeResource(getResources(), R.drawable.tiling_grass_block);
-            canvas.drawBitmap(blockImage, 100, 100, null);
-        }
-    }
 }

@@ -1,7 +1,6 @@
 package com.waterfall.thomaswatson.theprovider;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
@@ -12,30 +11,39 @@ import java.util.ArrayList;
 public class PlayerArea {
     private static int blockXAmount = 3;
     private static int blockYAmount = 3;
-    private static PlayerArea instance = new PlayerArea();
     private ArrayList<Block> blocks;
     private BlockDrawer blockDrawer;
     private Canvas canvas;
 
-    public static PlayerArea getInstance(){
 
-            return instance;
-    }
-    private PlayerArea(){
+    public PlayerArea(Context context){
        //initBlocks();
-        canvas = new Canvas(Bitmap.createBitmap((int)(blockXAmount*Block.getSize()), (int)(blockYAmount*Block.getSize()), Bitmap.Config.ARGB_8888));
+        blocks = new ArrayList<Block>();
+       initBlocks(context);
 
     }
-    private void initBlocks(){
+    private void initBlocks(Context context){
         for(int i = 0; i<(blockXAmount*blockYAmount); i++){
-            blocks.add(new Block());
+            Block block = new Block(context);
+            int yPos = 0;
+            if(i%blockXAmount == 0) {
+                block.setYPosition(yPos++);
+            }
+            block.setXPosition(i%blockXAmount);
+            blocks.add(block);
         }
 
     }
 
-     public void drawPlayerArea(Context context){
-         blockDrawer = new BlockDrawer(context,blocks);
-         blockDrawer.draw(canvas);
 
-     }
+    public ArrayList<Block> getBlocks() {
+        return blocks;
+    }
+
+    public void setBlocks(ArrayList<Block> blocks) {
+        this.blocks = blocks;
+    }
+
+
+
 }

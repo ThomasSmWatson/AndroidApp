@@ -9,18 +9,16 @@ import android.graphics.BitmapFactory;
  */
 public class Block {
 
-    private static float size;
+    private static float size = 100;
     private float xPosition;
     private float yPosition;
 
 
     private Bitmap blockImage;
     public Block(Context context){
+        size = 100;
         blockImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.tiling_grass_block);
 
-    }
-    public Block(){
-        blockImage = BitmapFactory.decodeFile("/tiling_grass_block.png");
     }
     public void setBlockImage(Bitmap blockImage){
      this.blockImage = blockImage;
@@ -37,19 +35,19 @@ public class Block {
         return blockImage;
     }
 
-    public float getxPosition() {
+    public float getXPosition() {
         return xPosition;
     }
 
-    public void setxPosition(float xPosition) {
+    public void setXPosition(float xPosition) {
         this.xPosition = xPosition;
     }
 
-    public float getyPosition() {
+    public float getYPosition() {
         return yPosition;
     }
 
-    public void setyPosition(float yPosition) {
+    public void setYPosition(float yPosition) {
         this.yPosition = yPosition;
     }
 
