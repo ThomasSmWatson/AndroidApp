@@ -21,9 +21,11 @@ public class BlockDrawer extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for(Block block: blocks)
+        for(Block block: blocks) {
+           // block.setBlockImage(BitmapFactory.decodeFile("/tiling_grass_block.png"));
 
-        canvas.drawBitmap(block.getBlockImage(),block.getxPosition(),block.getxPosition(),null);
-        canvas.save();
+            canvas.drawBitmap(block.getBlockImage(), block.getxPosition(), block.getxPosition(), null);
+            canvas.save();
+        }
     }
 }

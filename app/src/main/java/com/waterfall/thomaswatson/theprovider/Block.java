@@ -1,5 +1,6 @@
 package com.waterfall.thomaswatson.theprovider;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -14,9 +15,15 @@ public class Block {
 
 
     private Bitmap blockImage;
-    public Block( ){
-        blockImage = BitmapFactory.decodeFile("tiling_grass_block.png");
+    public Block(Context context){
+        blockImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.tiling_grass_block);
 
+    }
+    public Block(){
+        blockImage = BitmapFactory.decodeFile("/tiling_grass_block.png");
+    }
+    public void setBlockImage(Bitmap blockImage){
+     this.blockImage = blockImage;
     }
 
     public static void setSize(float size) {
