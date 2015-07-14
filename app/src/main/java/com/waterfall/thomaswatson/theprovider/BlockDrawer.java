@@ -24,7 +24,7 @@ public class BlockDrawer extends View{
         for(Block block: blocks) {
            // block.setBlockImage(BitmapFactory.decodeFile("/tiling_grass_block.png"));
 
-            canvas.drawBitmap(block.getBlockImage(), block.getXPosition() * Block.getSize(), block.getXPosition() * Block.getSize(), null);
+            canvas.drawBitmap(block.getBlockImage(), block.getXPosition() * Block.getSize(), block.getYPosition() * Block.getSize(), null);
 
         }
     }
