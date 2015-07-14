@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.View;
 
+import com.waterfall.thomaswatson.theprovider.blocks.GrassBlock;
+
 import java.util.ArrayList;
 
 /**
@@ -12,8 +14,8 @@ import java.util.ArrayList;
  */
 public class BlockDrawer extends View{
     private Bitmap image;
-    private ArrayList<Block> blocks;
-    public BlockDrawer(Context context, ArrayList<Block> blocks) {
+    private ArrayList<GrassBlock> blocks;
+    public BlockDrawer(Context context, ArrayList<GrassBlock> blocks) {
         super(context);
         this.blocks = blocks;
     }
@@ -21,10 +23,10 @@ public class BlockDrawer extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for(Block block: blocks) {
+        for(GrassBlock block: blocks) {
            // block.setBlockImage(BitmapFactory.decodeFile("/tiling_grass_block.png"));
 
-            canvas.drawBitmap(block.getBlockImage(), block.getXPosition() * Block.getSize(), block.getYPosition() * Block.getSize(), null);
+            canvas.drawBitmap(block.getBlockImage(), block.getPosition().getX() * GrassBlock.getScale(), block.getPosition().getY() * GrassBlock.getScale(), null);
 
         }
     }
