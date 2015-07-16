@@ -16,12 +16,16 @@ public class PlayerArea {
     private ArrayList<GrassBlock> blocks;
     private BlockDrawer blockDrawer;
     private Canvas canvas;
+    int blocksReady,totalBlockReady;
 
 
     public PlayerArea(Context context){
        //initBlocks();
         blocks = new ArrayList<GrassBlock>();
+        totalBlockReady = blockXAmount*blockYAmount;
+        blocksReady = 0;
        initBlocks(context);
+
 
     }
     private void initBlocks(Context context){
@@ -31,13 +35,19 @@ public class PlayerArea {
                 block.setPosition(x, y);
 
                 blocks.add(block);
+                blocksReady++;
 
             }
         }
 
     }
 
-
+    public float getCurrentLoadStatus(){
+        if(blocksReady == 0){
+            return 0.1f;
+        }
+        return blocksReady/totalBlockReady;
+    }
     public ArrayList<GrassBlock> getBlocks() {
         return blocks;
     }
