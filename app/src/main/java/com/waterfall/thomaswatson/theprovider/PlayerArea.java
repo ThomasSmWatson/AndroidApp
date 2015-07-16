@@ -3,8 +3,7 @@ package com.waterfall.thomaswatson.theprovider;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.waterfall.thomaswatson.theprovider.blocks.GrassBlock;
-
+import com.waterfall.thomaswatson.theprovider.blocks.*;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 public class PlayerArea {
     private static int blockXAmount = 30;
     private static int blockYAmount = 30;
-    private ArrayList<GrassBlock> blocks;
+    private ArrayList<Block> blocks;
     private BlockDrawer blockDrawer;
     private Canvas canvas;
     int blocksReady,totalBlockReady;
@@ -21,7 +20,7 @@ public class PlayerArea {
 
     public PlayerArea(Context context){
        //initBlocks();
-        blocks = new ArrayList<GrassBlock>();
+        blocks = new ArrayList<Block>();
         totalBlockReady = blockXAmount*blockYAmount;
         blocksReady = 0;
        initBlocks(context);
@@ -31,14 +30,22 @@ public class PlayerArea {
     private void initBlocks(Context context){
         for(int x = 0; x<=blockXAmount; x++){
             for(int y = 0; y<blockYAmount; y++){
-                GrassBlock block = new GrassBlock(context);
-                block.setPosition(x, y);
 
-                blocks.add(block);
+                if( (x <10 || x >20) || (y<10 || y>20) ){
+                    Block barricadingBlock = new BarracidingBlock(context);
+                    barricadingBlock.setPosition(x,y);
+                    blocks.add(barricadingBlock);
+                }else {
+                    GrassBlock block = new GrassBlock(context);
+                    block.setPosition(x, y);
+                    blocks.add(block);
+                }
                 blocksReady++;
 
             }
         }
+
+
 
     }
 
@@ -48,11 +55,11 @@ public class PlayerArea {
         }
         return blocksReady/totalBlockReady;
     }
-    public ArrayList<GrassBlock> getBlocks() {
+    public ArrayList<Block> getBlocks() {
         return blocks;
     }
 
-    public void setBlocks(ArrayList<GrassBlock> blocks) {
+    public void setBlocks(ArrayList<Block> blocks) {
         this.blocks = blocks;
     }
 

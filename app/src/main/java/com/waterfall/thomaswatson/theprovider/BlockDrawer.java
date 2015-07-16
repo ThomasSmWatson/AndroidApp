@@ -3,8 +3,12 @@ package com.waterfall.thomaswatson.theprovider;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 
+import com.waterfall.thomaswatson.theprovider.blocks.Block;
 import com.waterfall.thomaswatson.theprovider.blocks.GrassBlock;
 
 import java.util.ArrayList;
@@ -14,11 +18,27 @@ import java.util.ArrayList;
  */
 public class BlockDrawer extends View{
     private Bitmap image;
-    private ArrayList<GrassBlock> blocks;
+    private ArrayList<Block> blocks;
     private int totalBlockAmount;
     private int blockAmountDrawn;
-    public BlockDrawer(Context context, ArrayList<GrassBlock> blocks) {
+    Display display;
+    Point size;
+    Position<Integer> screenCenter;
+
+    public BlockDrawer(Context context, ArrayList<Block> blocks) {
         super(context);
+        display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+
+
+        size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        screenCenter = new Position<Integer>();
+        screenCenter.setX(width/2);
+        screenCenter.setY(height/2);
+
         this.blocks = blocks;
         totalBlockAmount = blocks.size();
         blockAmountDrawn = 0;
@@ -28,13 +48,23 @@ public class BlockDrawer extends View{
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
-        for(GrassBlock block: blocks) {
+        for(Block block: blocks) {
 
+            Position<Integer> position = new Position<Integer>();
+            position.setX(block.getPosition().getX() * GrassBlock.getScale() - getCenter().getX() + screenCenter.getX());
+            position.setY(block.getPosition().getY() * GrassBlock.getScale()- getCenter().getY() + screenCenter.getY());
 
-            canvas.drawBitmap(block.getBlockImage(), block.getPosition().getX() * GrassBlock.getScale(), block.getPosition().getY() * GrassBlock.getScale(), null);
+            canvas.drawBitmap(block.getBlockImage(), position.getX(), position.getY() , null);
 
 
         }
+    }
+
+    public Position<Integer> getCenter(){
+        Position<Integer> center = new Position<Integer>();
+        center.setX( 15 * Block.getScale()+Block.getScale()/2);
+        center.setY( 15 *Block.getScale()+Block.getScale()/2);
+        return center;
     }
 
 
