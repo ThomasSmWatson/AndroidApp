@@ -27,6 +27,7 @@ public class BlockDrawer extends View{
     Point size;
     Position<Integer> screenCenter;
     int offsetX, offsetY = 0;
+    float mLastTouchX,mLastTouchY = 0;
     Position<Integer> movement = new Position<Integer>();
 
     private VelocityTracker mVelocityTracker = null;
@@ -54,17 +55,63 @@ public class BlockDrawer extends View{
     protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
+        canvas.save();
         for(Block block: blocks) {
 
             Position<Integer> position = new Position<Integer>();
-            position.setX(block.getPosition().getX() * GrassBlock.getScale() - getCenter().getX() + screenCenter.getX() + offsetX);
-            position.setY(block.getPosition().getY() * GrassBlock.getScale() - getCenter().getY() + screenCenter.getY() + offsetY);
+            int xpos = (block.getPosition().getX() * GrassBlock.getScale() - getCenter().getX() + screenCenter.getX() + offsetX);
+            int ypos = block.getPosition().getY() * GrassBlock.getScale() - getCenter().getY() + screenCenter.getY() + offsetY;
+
+            position.setX(xpos);
+            position.setY(ypos);
 
             canvas.drawBitmap(block.getBlockImage(), position.getX(), position.getY() , null);
-
-
         }
+        canvas.restore();
     }
+
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        final int action = ev.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN: {
+                final float x = ev.getX();
+                final float y = ev.getY();
+
+                // Remember where we started
+                mLastTouchX = x;
+                mLastTouchY = y;
+                break;
+            }
+
+            case MotionEvent.ACTION_MOVE: {
+                final float x = ev.getX();
+                final float y = ev.getY();
+
+                // Calculate the distance moved
+                final float dx = x - mLastTouchX;
+                final float dy = y - mLastTouchY;
+
+                // Move the object
+                offsetX += dx;
+                offsetY += dy;
+
+                // Remember this touch position for the next move event
+                mLastTouchX = x;
+                mLastTouchY = y;
+
+                // Invalidate to request a redraw
+                invalidate();
+                break;
+            }
+        }
+
+        return true;
+    }
+
+
 
 
 
