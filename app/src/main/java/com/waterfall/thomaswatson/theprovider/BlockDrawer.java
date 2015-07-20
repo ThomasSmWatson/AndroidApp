@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class BlockDrawer extends View{
     private Bitmap image;
     private ArrayList<Block> blocks;
+
     private int totalBlockAmount;
     private int blockAmountDrawn;
     Display display;
@@ -31,6 +32,7 @@ public class BlockDrawer extends View{
     Position<Integer> movement = new Position<Integer>();
 
     private VelocityTracker mVelocityTracker = null;
+
     public BlockDrawer(Context context, ArrayList<Block> blocks) {
         super(context);
         display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -56,6 +58,7 @@ public class BlockDrawer extends View{
 
         super.onDraw(canvas);
         canvas.save();
+
         for(Block block: blocks) {
 
             Position<Integer> position = new Position<Integer>();

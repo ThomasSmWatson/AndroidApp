@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.waterfall.thomaswatson.theprovider.BlockType;
 import com.waterfall.thomaswatson.theprovider.R;
 
 /**
@@ -15,7 +16,7 @@ public class GrassBlock extends Block{
 
     public GrassBlock(Context context){
         super(context);
-
+        BLOCK_TYPE = BlockType.GRASS_BLOCK;
 
     }
 

@@ -3,7 +3,10 @@ package com.waterfall.thomaswatson.theprovider;
 import android.content.Context;
 import android.graphics.Canvas;
 
-import com.waterfall.thomaswatson.theprovider.blocks.*;
+import com.waterfall.thomaswatson.theprovider.blocks.BarracidingBlock;
+import com.waterfall.thomaswatson.theprovider.blocks.Block;
+import com.waterfall.thomaswatson.theprovider.blocks.BlockFactory;
+
 import java.util.ArrayList;
 
 /**
@@ -17,51 +20,48 @@ public class PlayerArea {
     private Canvas canvas;
     int blocksReady,totalBlockReady;
 
-
-    public PlayerArea(Context context){
-       //initBlocks();
-        blocks = new ArrayList<Block>();
-        totalBlockReady = blockXAmount*blockYAmount;
-        blocksReady = 0;
-       initBlocks(context);
+    private BlockFactory factory;
 
 
-    }
-    private void initBlocks(Context context){
-        for(int x = 0; x<=blockXAmount; x++){
-            for(int y = 0; y<blockYAmount; y++){
+        public PlayerArea(Context context){
+           //initBlocks();
+            blocks = new ArrayList<Block>();
+            totalBlockReady = blockXAmount*blockYAmount;
+            blocksReady = 0;
+           initBlocks(context);
 
-                if( (x <10 || x >20) || (y<10 || y>20) ){
-                    Block barricadingBlock = new BarracidingBlock(context);
-                    barricadingBlock.setPosition(x,y);
-                    blocks.add(barricadingBlock);
-                }else {
-                    GrassBlock block = new GrassBlock(context);
-                    block.setPosition(x, y);
-                    blocks.add(block);
+
+        }
+        private void initBlocks(Context context){
+            for(int x = 0; x<=blockXAmount; x++){
+                for(int y = 0; y<blockYAmount; y++){
+
+
+                        Block barricadingBlock = new BarracidingBlock(context);
+                        barricadingBlock.setPosition(x,y);
+                        blocks.add(barricadingBlock);
+                        blocksReady++;
+
                 }
-                blocksReady++;
-
             }
+           setBlocks(new BlockInitializer(context).generateSquare(blocks, 10, 10, 10));
+        }
+
+        public float getCurrentLoadStatus() {
+            if (blocksReady == 0) {
+                return 0.1f;
+            }
+            return blocksReady / totalBlockReady;
         }
 
 
-
-    }
-
-    public float getCurrentLoadStatus(){
-        if(blocksReady == 0){
-            return 0.1f;
+        public ArrayList<Block> getBlocks() {
+            return blocks;
         }
-        return blocksReady/totalBlockReady;
-    }
-    public ArrayList<Block> getBlocks() {
-        return blocks;
-    }
 
-    public void setBlocks(ArrayList<Block> blocks) {
-        this.blocks = blocks;
-    }
+        public void setBlocks(ArrayList<Block> blocks) {
+            this.blocks = blocks;
+        }
 
 
 

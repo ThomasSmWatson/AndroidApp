@@ -14,6 +14,7 @@ public abstract class Block implements BlockType{
     private Position<Integer> blockPosition;
     private boolean inUse;
     public static int scale;
+    public static int BLOCK_TYPE = 0;
     public Block(Context context){
         scale = 100;
         blockImage = makeImageScaleable(setupBlockImage(context));

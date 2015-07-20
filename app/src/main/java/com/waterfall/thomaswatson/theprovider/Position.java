@@ -20,4 +20,33 @@ public class Position <T extends  Number>{
     public T getY(){
         return y;
     }
+
+    public  boolean isGraterThan(Position<T> pos){
+        if(pos.getX().floatValue() > this.getX().floatValue() && pos.getY().floatValue() > this.getY().floatValue()){
+            return true;
+        }
+        return false;
+    }
+
+    public<T extends  Number>  boolean isGraterThan(T x, T y){
+        if(x.floatValue() > this.getX().floatValue() && y.floatValue() > this.getY().floatValue()){
+            return true;
+        }
+        return false;
+    }
+
+
+    public  boolean isLessThan(Position<T> pos){
+        if(pos.getX().floatValue() < this.getX().floatValue() && pos.getY().floatValue() < this.getY().floatValue()){
+            return true;
+        }
+        return false;
+    }
+
+    public<T extends  Number>  boolean isLessThan(T x, T y){
+        if(x.floatValue() < this.getX().floatValue() && y.floatValue() < this.getY().floatValue()){
+            return true;
+        }
+        return false;
+    }
 }
