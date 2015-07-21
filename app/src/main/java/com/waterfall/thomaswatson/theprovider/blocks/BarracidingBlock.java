@@ -14,8 +14,9 @@ public class BarracidingBlock extends Block {
 
     public BarracidingBlock(Context context) {
         super(context);
-        this.setIsInUse(true);
         BLOCK_TYPE = BlockType.BARRACADING_BLOCK;
+        this.setIsInUse(true);
+
     }
 
     @Override

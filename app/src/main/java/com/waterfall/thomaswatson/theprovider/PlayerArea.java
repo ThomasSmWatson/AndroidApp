@@ -18,6 +18,7 @@ public class PlayerArea {
     private ArrayList<Block> blocks;
     private BlockDrawer blockDrawer;
     private Canvas canvas;
+    private Position<Integer> center;
     int blocksReady,totalBlockReady;
 
     private BlockFactory factory;
@@ -33,10 +34,8 @@ public class PlayerArea {
 
         }
         private void initBlocks(Context context){
-            for(int x = 0; x<=blockXAmount; x++){
+            for(int x = 0; x<blockXAmount; x++){
                 for(int y = 0; y<blockYAmount; y++){
-
-
                         Block barricadingBlock = new BarracidingBlock(context);
                         barricadingBlock.setPosition(x,y);
                         blocks.add(barricadingBlock);
@@ -44,7 +43,10 @@ public class PlayerArea {
 
                 }
             }
-           setBlocks(new BlockInitializer(context).generateSquare(blocks, 10, 10, 10));
+            center = new Position<Integer>();
+            center.setX((int)blockXAmount/2);
+            center.setY((int) blockYAmount / 2);
+            setBlocks(new BlockInitializer(context).generateRandomArea(blocks, center, 64));
         }
 
         public float getCurrentLoadStatus() {
