@@ -6,7 +6,6 @@ import com.waterfall.thomaswatson.theprovider.blocks.Block;
 import com.waterfall.thomaswatson.theprovider.blocks.BlockFactory;
 import com.waterfall.thomaswatson.theprovider.blocks.GrassBlock;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -24,18 +23,9 @@ public class BlockInitializer {
         }
 
         //return an ArrayList of positions which have available Blocks
-        public static  ArrayList<Block> getAvailableBlocks(ArrayList<Block> blocks){
-            ArrayList<Block> availableBlocks = new ArrayList<Block>();
+        public static  Block[][] getAvailableBlocks(Block[][] blocks){
 
-            //loop through the blocks and check the type...
-            for(Block block:blocks){
-                switch(block.BLOCK_TYPE){
-                    case BlockType.GRASS_BLOCK:
-                        availableBlocks.add(block);
-                        break;
-                }
-            }
-            return availableBlocks;
+           return null;
         }
 
         private void prepareVariablesForGeneration(){
@@ -43,46 +33,63 @@ public class BlockInitializer {
         }
 
         //generates a square patch of grass blocks at pos x,y. with the radius given
-        public ArrayList<Block> generateSquare(ArrayList<Block> blocks, int xPos, int yPos, int radius){
-            ArrayList<Block> generatedBlocks = new ArrayList<Block>();
-            for(Block block :blocks){
-                if (block.getPosition().getX() >= xPos && block.getPosition().getX() <= (xPos+radius-1) && block.getPosition().getY() >= yPos && block.getPosition().getY() <= (yPos+radius-1)){
-                    Position<Integer> lastPos = block.getPosition();
-                    block = factory.makeBlock(BlockType.GRASS_BLOCK, context);
-                    block.setPosition(lastPos);
+        public Block[][] generateSquare(Block[][] blocks, int xPos, int yPos, int radius){
+            Block[][] generatedBlocks = blocks;
+            for(int x = 0; x<PlayerArea.blockXAmount; x++){
+                for(int y = 0; y<PlayerArea.blockYAmount; y++){
+                    if(x > xPos && x<xPos+radius  && y>yPos && y <yPos+radius){
+                        Block block =new BlockFactory().makeBlock(BlockType.GRASS_BLOCK,context);
+                        block.setPosition(x,y);
+                        generatedBlocks[x][y] = block;
+                    }
                 }
-                generatedBlocks.add(block);
+
             }
-            return generatedBlocks;
+            return null;
         }
 
 
         //TODO: Generate a random area with the amount of blocks passed through
-        public ArrayList<Block> generateRandomArea(ArrayList<Block> blocks, Position<Integer> center, int amount) {
-            int spends = amount;
-            ArrayList<Block> newBlocks = blocks;
-            if(spends >=16) {
-                newBlocks = generateSquare(blocks, center.getX() - 2, center.getY() - 2, 4);
-                Position<Integer> newCenter = new Position<Integer>();
+        public Block[][] generateRandomArea(Block[][] blocks, Position<Integer> center, int amount) {
+            Block[][] newBlocks = blocks;
+            int direction = new Random().nextInt(4);
 
-                int movementX =(new Random().nextInt(8)) -4;
-                int movementY =(new Random().nextInt(8)) -4;
+            int newX,newY;
+            newX = center.getX();
+            newY = center.getY();
 
-                newCenter.setX(center.getX() + movementX);
-                newCenter.setY(center.getY() + movementY);
-
-                for(Block block: newBlocks){
-                    if(block instanceof GrassBlock){
-                        if(block.isInUse()){
-                            spends--;
-                            block.setIsInUse(false);
-                        }
-
-                    }
-                }
-
-                return generateRandomArea(newBlocks,newCenter,spends);
+            switch(direction){
+                case Block.NORTH:
+                    newY--;
+                    break;
+                case Block.SOUTH:
+                    newY++;
+                    break;
+                case Block.EAST:
+                    newX++;
+                    break;
+                case Block.WEST:
+                    newX--;
+                    break;
             }
+
+
+            if(newX <0 || newX > PlayerArea.blockYAmount || newY<0 || newY >PlayerArea.blockYAmount || newBlocks[newX][newY] instanceof GrassBlock){
+
+                generateRandomArea(newBlocks,center,amount);
+            }
+
+            if(amount != 0 ){
+                Block block =new BlockFactory().makeBlock(BlockType.GRASS_BLOCK,context);
+                Position<Integer> pos = new Position<Integer>();
+                pos.setX(newX);
+                pos.setY(newY);
+                block.setPosition(pos);
+                newBlocks[newX][newY] =block;
+                generateRandomArea(newBlocks, newBlocks[newX][newY].getPosition(),amount-1);
+            }
+
+
                 return newBlocks;
 
 

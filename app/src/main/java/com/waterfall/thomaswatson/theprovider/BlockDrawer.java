@@ -11,19 +11,15 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.waterfall.thomaswatson.theprovider.blocks.Block;
-import com.waterfall.thomaswatson.theprovider.blocks.GrassBlock;
-
-import java.util.ArrayList;
 
 /**
  * Created by thomaswatson on 13/07/2015.
  */
 public class BlockDrawer extends View{
     private Bitmap image;
-    private ArrayList<Block> blocks;
+    private Block[][] blocks;
 
-    private int totalBlockAmount;
-    private int blockAmountDrawn;
+
     Display display;
     Point size;
     Position<Integer> screenCenter;
@@ -33,7 +29,7 @@ public class BlockDrawer extends View{
 
     private VelocityTracker mVelocityTracker = null;
 
-    public BlockDrawer(Context context, ArrayList<Block> blocks) {
+    public BlockDrawer(Context context, Block[][] blocks) {
         super(context);
         display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
@@ -45,12 +41,12 @@ public class BlockDrawer extends View{
         int height = size.y;
 
         screenCenter = new Position<Integer>();
-        screenCenter.setX(width/2);
+        screenCenter.setX(width / 2);
         screenCenter.setY(height/2);
 
         this.blocks = blocks;
-        totalBlockAmount = blocks.size();
-        blockAmountDrawn = 0;
+
+
     }
 
     @Override
@@ -59,16 +55,13 @@ public class BlockDrawer extends View{
         super.onDraw(canvas);
         canvas.save();
 
-        for(Block block: blocks) {
+        for(int x=0; x<PlayerArea.blockXAmount;x++)
+            for(int y=0;y<PlayerArea.blockYAmount;y++){
+                int xpos = (blocks[x][y].getPosition().getX() * Block.getScale() - getCenter().getX() + screenCenter.getX() + offsetX);
 
-            Position<Integer> position = new Position<Integer>();
-            int xpos = (block.getPosition().getX() * GrassBlock.getScale() - getCenter().getX() + screenCenter.getX() + offsetX);
-            int ypos = block.getPosition().getY() * GrassBlock.getScale() - getCenter().getY() + screenCenter.getY() + offsetY;
+                int ypos = blocks[x][y].getPosition().getY() * Block.getScale() - getCenter().getY() + screenCenter.getY() + offsetY;
 
-            position.setX(xpos);
-            position.setY(ypos);
-
-            canvas.drawBitmap(block.getBlockImage(), position.getX(), position.getY() , null);
+                canvas.drawBitmap(blocks[x][y].getBlockImage(),xpos, ypos, null);
         }
         canvas.restore();
     }
