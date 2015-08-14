@@ -16,6 +16,7 @@ public abstract class Block implements BlockType{
     public static int scale;
     public static int BLOCK_TYPE = 0;
     public Block(Context context){
+        //If block size is to big, get 'OutOfMemory' error.. look into
         scale = 100;
         blockImage = makeImageScaleable(setupBlockImage(context));
         inUse = true;
